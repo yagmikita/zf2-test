@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ZendSkeletonApplication
 =======================
 
@@ -50,3 +51,9 @@ Virtual Host
 ------------
 Afterwards, set up a virtual host to point to the public/ directory of the
 project and you should be ready to go!
+=======
+zf2-test
+========
+
+zf2 test application
+>>>>>>> c74f8888e84bd9729c569d997b3441739a439116
