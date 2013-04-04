@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 nbproject
 ._*
 .~lock.*
 .buildpath
 .DS_Store
+.Apple_Double
 .idea
 .project
 .settings
@@ -14,5 +14,3 @@ LICENSE.txt
 README.txt
 demos/
 extras/documentation
-
->>>>>>> c74f8888e84bd9729c569d997b3441739a439116
