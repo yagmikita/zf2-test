@@ -1,40 +1,53 @@
 <?php
+
+namespace Blog;
+
 return array(
-    'controllers' => array(
-        'invokables' => array(
-            'ZendSkeletonModule\Controller\Skeleton' => 'ZendSkeletonModule\Controller\SkeletonController',
-        ),
-    ),
     'router' => array(
         'routes' => array(
-            'module-name-here' => array(
+            'testConsole' => array(
+                'options' => array(
+                    'route' => 'get index [--verbose|-v] <doname>',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Blog\Command',
+                        'controller' => 'Console',
+                        'action' => 'index'
+                    ),
+                ),
+            ),
+            'blog' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    // Change this to something specific to your module
-                    'route'    => '/module-specific-root',
+                    'route' => '/blog',
                     'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
-                        '__NAMESPACE__' => 'ZendSkeletonModule\Controller',
-                        'controller'    => 'Skeleton',
+                        '__NAMESPACE__' => 'Blog\Controller',
+                        'controller'    => 'Post',
                         'action'        => 'index',
                     ),
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    // This route is a sane default when developing a module;
-                    // as you solidify the routes for your module, however,
-                    // you may want to remove it and replace it with more
-                    // specific routes.
+                    'paginator' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/post/index/[page/:page]',
+                            'defaults' => array(
+                                'page'           => 1
+                            ),
+                        ),
+                    ),
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '[/:controller[/:action[/:id]]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
                             ),
                             'defaults' => array(
+                                'controller' => 'Blog\Controller\Post',
+                                'action'     => 'index',
                             ),
                         ),
                     ),
@@ -42,9 +55,32 @@ return array(
             ),
         ),
     ),
+    'controllers' => array(
+        'invokables' => array(
+            'Blog\Controller\Post' => 'Blog\Controller\PostController',
+            'Blog\Controller\User' => 'Blog\Controller\UserController',
+            'Blog\Command\Console' => 'Blog\Command\Console',
+        ),
+    ),
     'view_manager' => array(
+        'display_not_found_reason' => true,
+        'display_exceptions'       => true,
         'template_path_stack' => array(
-            'ZendSkeletonModule' => __DIR__ . '/../view',
+            'blog' => __DIR__ . '/../view',
+        ),
+    ),
+    'doctrine' => array(
+        'driver' => array(
+            'application_entities' => array(
+                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Blog/Entity'),
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Blog\Entity' => 'application_entities',
+                ),
+            ),
         ),
     ),
 );

@@ -1,3 +1,47 @@
-<strong>Module:</strong>        Blog &raquo;
-<strong>Controller:</strong>    Post &raquo;
-<strong>Action:</strong>        index
+<h2>Posts Overview</h2>
+
+<p>
+    <a class="btn btn-primary" href="/blog/post/add">Add new Post</a>
+</p>
+
+<?php if (count($paginator)): ?>
+
+    <div class="article-placeholder">
+
+        <input type="hidden" id="page" value="<?php echo ($_SERVER['REQUEST_URI']); ?>" />
+
+        <?php foreach ($paginator as $post) : ?>
+            <article>
+                <h3>
+                    <?php echo $this->escapeHtml($post->getTitle());?>
+                    <a class="headerlink" href="#post-<?php echo $post->getId(); ?>" id="post-<?php echo $post->getId(); ?>" title="Permalink to this headline">¶</a>
+                </h3>
+                <p>
+                    <?php echo $this->escapeHtml($post->getText());?>
+                </p>
+                <aside>
+                    <a class="edit-post btn btn-info" href="/blog/post/edit/<?php echo $post->getId(); ?>">Edit this Post</a>
+                    &nbsp;
+                    <a class="delete-post btn btn-danger" href="/blog/post/delete/<?php echo $post->getId(); ?>">Delete this Post</a>
+                </aside>
+            </article>
+        <?php endforeach; ?>
+
+        <?php echo $this->paginationControl($paginator,
+                                            'Sliding',
+                                            '/partial/pagination', array('route' => 'blog/paginator')); ?>
+
+    </div>
+
+<?php endif; ?>
+
+<script>
+    $(function(){
+        $('.delete-post').on('click', function(e){
+            if (confirm('Are you sure?')) {
+                window.location = $(this).attr('href');
+            }
+            return false;
+        });
+    });
+</script>

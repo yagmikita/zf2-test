@@ -1,3 +1,19 @@
-<strong>Module:</strong>        Blog &raquo;
-<strong>Controller:</strong>    Post &raquo;
-<strong>Action:</strong>        add
+<h2>Add a new Post</h2>
+
+<?php
+    echo $this->partial('/partial/messages', array(
+        'messages' => $messages,
+    ));
+?>
+
+<?php
+    echo $this->partial('/blog/post/_form', array(
+        'method' => 'POST',
+        'action' => '/blog/post/add',
+        'name' => 'post',
+        'submitCaption' => 'Add',
+        'errors' => $errors,
+        'post' => $post,
+        'saved' => $saved,
+    ));
+?>
