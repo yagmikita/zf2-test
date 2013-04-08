@@ -5,7 +5,7 @@ namespace Blog;
 return array(
     'router' => array(
         'routes' => array(
-            'testConsole' => array(
+            /*'testConsole' => array(
                 'options' => array(
                     'route' => 'get index [--verbose|-v] <doname>',
                     'defaults' => array(
@@ -14,7 +14,7 @@ return array(
                         'action' => 'index'
                     ),
                 ),
-            ),
+            ),*/
             'blog' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -70,6 +70,15 @@ return array(
         ),
     ),
     'doctrine' => array(
+        'configuration' => array(
+            'orm_default' => array(
+                /**
+                 * these folder shold be writable - this is default option
+                 */
+                'proxy_dir' => 'data/DoctrineORMModule/Proxy',
+                'proxy_namespace' => 'DoctrineORMModule\Proxy',
+            ),
+        ),
         'driver' => array(
             'application_entities' => array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
