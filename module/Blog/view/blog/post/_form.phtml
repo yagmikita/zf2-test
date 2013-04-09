@@ -1,0 +1,21 @@
+<form method="<?php echo $this->method; ?>" name="<?php echo $this->name; ?>" action="<?php echo $this->action; ?>">
+    <input type="hidden" id="id" name="id" value="<?php echo !$saved ? $post->id : ""; ?>" />
+
+    <div class="field-wrapper">
+        <label for="title">Enter title here:</label>
+        <input type="text" id="title" name="title" value="<?php echo !$saved ? $post->title : ""; ?>" />
+        <div class="errors"><?php echo isset($errors['title']) ? $errors['title'] : ""; ?></div>
+    </div>
+
+    <br/>
+
+    <div class="field-wrapper">
+        <label for="text">Enter title here:</label>
+        <textarea id="text" cols="120" name="text"><?php echo !$saved ? $post->text : ""; ?></textarea>
+        <div class="errors"><?php echo isset($errors['text']) ? $errors['text'] : ""; ?></div>
+    </div>
+
+    <br/>
+
+    <input type="submit" value="<?php echo isset($this->submitCaption) ? $this->submitCaption : 'Submit'; ?>" />
+</form>

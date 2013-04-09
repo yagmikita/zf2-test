@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PostTagRelations" table="post_tag_relations">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-many field="idPost" target-entity="Posts">
+      <join-columns>
+        <join-column name="id_post" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-many>
+    <many-to-many field="idTag" target-entity="Tags">
+      <join-columns>
+        <join-column name="id_tag" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

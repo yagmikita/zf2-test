@@ -1,0 +1,9 @@
+<?php if (count($this->messages)): ?>
+    <div class='messages'>
+        <ul>
+            <?php foreach ($this->messages as $message): ?>
+                <li class="alert alert-<?php echo $message['type']; ?>"><?php echo $message['message']; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
