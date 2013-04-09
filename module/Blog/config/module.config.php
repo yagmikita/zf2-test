@@ -83,7 +83,10 @@ return array(
             'application_entities' => array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Blog/Entity'),
+                'paths' => array(
+                    __DIR__ . '/../src/Blog/Entity',
+                    __DIR__ . '/../src/Blog/Mapping/Annotations'
+                ),
             ),
             'orm_default' => array(
                 'drivers' => array(

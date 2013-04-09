@@ -20,10 +20,10 @@
                     <?php echo $this->escapeHtml($post->getText());?>
                 </p>
                 <?php
-                    //var_dump($post->getTags());
-                    /*$this->partial('/partial/tags.phtml', array(
-                        'tags' => $post->getTags()
-                    ));*/
+                    echo $this->partial('/partial/tags', array(
+                        'tags' => $post->getTags(),
+                        'prepend' => 'Tags:&nbsp;&nbsp;&nbsp;'
+                    ));
                 ?>
                 <aside>
                     <a class="edit-post btn btn-info" href="/blog/post/edit/<?php echo $post->getId(); ?>">Edit this Post</a>

@@ -14,7 +14,7 @@ class PostController extends EntityAwareController
     public function indexAction()
     {
         $repository = $this->getEntityManager()->getRepository('Blog\Entity\Post');
-        //$posts      = $repository->findAll();
+        $posts      = $repository->findAll();
 
         $adapter = new DoctrineAdapter(new ORMPaginator($repository->createQueryBuilder('posts')));
         $paginator = new Paginator($adapter);
