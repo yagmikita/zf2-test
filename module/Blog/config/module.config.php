@@ -80,7 +80,7 @@ return array(
             ),
         ),
         'driver' => array(
-            'application_entities' => array(
+            __NAMESPACE__ . '_entities' => array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => array(
@@ -90,7 +90,7 @@ return array(
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'Blog\Entity' => 'application_entities',
+                    'Blog\Entity' => __NAMESPACE__ . '_entities',
                 ),
             ),
         ),
